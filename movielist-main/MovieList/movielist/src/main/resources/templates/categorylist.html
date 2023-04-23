@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Director list</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+
+	<body>
+		<table>
+				<tr>
+					<th>Category</th>
+				</tr>
+			<tbody>
+				<tr th:each = "category : ${categories}">
+
+					<td th:text="${category.name}"></td>
+
+ 					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletecategory/{categoryid}(categoryid=${category.categoryid})}">Delete</a></td>					
+ 					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editcategory/{categoryid}(categoryid=${category.categoryid})}">Edit</a></td>					
+					
+				</tr>
+			</tbody>
+		</table>
+		<a href="/movielist">Back to movies</a>
+		<a href="/addcategory">Add category</a>
+	</body>
+
+</html>
